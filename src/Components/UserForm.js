@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 class UserForm extends Component{
 
     state = {
-        id: 0,
         firstName: '',
         lastName: '',
         birthDate: ''
@@ -18,9 +17,8 @@ class UserForm extends Component{
 
     onSubmitHandler = (evt) => {
         evt.preventDefault();
-        this.setState({id: Math.floor(Math.random() * 1000000 + 1 )})
         this.props.onSubmit(this.state);
-        this.setState({firstName: '', lastName: '', birthDate: '', id: null})
+        this.setState({firstName: '', lastName: '', birthDate: ''})
     }
 
     render(){

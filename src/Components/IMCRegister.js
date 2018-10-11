@@ -8,19 +8,17 @@ class IMCRegister extends Component{
 
     state = {
         user: {},
-        imc: []
+        imc: [],
     }
 
     async componentDidMount(){
         const userId = this.props.match.params.id;
         let userRequest = await axios.get(`http://localhost:3001/users/${userId}`);
-        let user = await userRequest.data;
+        let user = userRequest.data;
         let imcRequest = await axios.get(`http://localhost:3001/imc?userId=${userId}`);
-        let imc = await imcRequest.data;
+        let imc = imcRequest.data;
         this.setState({user, imc});
     }
-
-    compo
 
     render = () => {
         // console.log(this.props.match.params);

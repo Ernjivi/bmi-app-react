@@ -1,9 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 const UserItem = (props) => {
     return (
-        <li>{props.firstName} {props.lastName}</li>
+        <li>
+            <Link to={`/users/${props.userId}`}>
+                {props.userId} {props.firstName} {props.lastName}
+            </Link>
+        </li>
     )
 }
 
