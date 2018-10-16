@@ -1,0 +1,24 @@
+@mixin full-with {
+    width: 90%;
+    margin: .5em auto;
+    display: block;
+    padding: .5em;
+}
+
+input.full-with{
+    @include full-with;
+    border: solid 1px silver;
+}
+
+button.full-with{
+    @include full-with;
+    border: solid 1px black;
+}
+
+button.full-with.active{
+    font-weight: 500;
+}
+
+.user-form {
+    padding-bottom: 2em;
+}
