@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './UserRegister.module.scss';
 import UserForm from './UserForm';
 import UserList from './UserList';
 import axios from 'axios';
@@ -33,6 +34,7 @@ class UserRegister extends Component{
     render = () => {
         return (
             <>
+                <h1 className={styles.title}>IMC Calculator</h1>
                 <UserForm onSubmit={this.onFormSubmitHandler} />
                 <UserList userList={this.state.userList} />
             </>
