@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './UserForm.module.scss';
 
 
 class UserForm extends Component{
@@ -6,26 +7,41 @@ class UserForm extends Component{
     state = {
         firstName: '',
         lastName: '',
-        birthDate: ''
+        birthDate: '',
+        isValid: false
     }
 
     onChangeHandler = (evt) => {
         this.setState({
             [evt.target.name]: evt.target.value
         })
+        if(this.state.firstName !== '' && this.state.lastName !== ''){
+            this.setState({isValid: true})
+        }
     }
 
     onSubmitHandler = (evt) => {
         evt.preventDefault();
         this.props.onSubmit(this.state);
-        this.setState({firstName: '', lastName: '', birthDate: ''})
+        this.setState({
+            firstName: '',
+            lastName: '',
+            birthDate: '',
+            isValid: false
+        })
     }
 
     render(){
+        let buttonClasses = [styles['full-with']];
+        if(this.state.isValid){
+            buttonClasses.push(styles.active)
+        }
+        
         return (
-        <form onSubmit={this.onSubmitHandler}>
+        <form className={styles['user-form']} onSubmit={this.onSubmitHandler}>
           <div>
             <input
+                className={styles['full-with']}
                 type="text"
                 name="firstName"
                 placeholder="Nombre"
@@ -34,6 +50,7 @@ class UserForm extends Component{
           </div>
           <div>
             <input
+                className={styles['full-with']}
                 type="text"
                 name="lastName"
                 placeholder="Apellidos"
@@ -41,12 +58,18 @@ class UserForm extends Component{
                 value={this.state.lastName}/>
           </div>
           <div>
-            <input type="date" name="birthDate"
+            <input
+                className={styles['full-with']}
+                type="date" name="birthDate"
                 onChange={this.onChangeHandler}
                 value={this.state.birthDate}/>
           </div>
           <div>
-            <button>Añadir Usuario</button>
+            <button
+                disabled={!this.state.isValid}
+                className={buttonClasses.join(' ')}>
+                Añadir Usuario
+            </button>
           </div>
         </form>
         )
